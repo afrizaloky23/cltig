@@ -126,7 +126,6 @@ const CommentAndLike = async function(session, accountId, text){
 
 	if (result.length > 0) {
 		const task = [
-			ngefollow(session, accountId),
 			ngeComment(session, result[0].params.id, text),
 			ngeLike(session, result[0].params.id)
 		]
