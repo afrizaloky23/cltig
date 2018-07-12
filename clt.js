@@ -183,7 +183,7 @@ const Excute = async function(User, TargetUsername, Text, Sleep){
 						console.log(chalk`[{red ${timeNow}}] {bold.red [✕]}${akun.params.username} => PRIVATE`)
 					}
 				}));
-				console.log(chalk`{yellow Delay For ${Sleep} MiliSeconds}`);
+				console.log(chalk`{cyan Delay For ${Sleep} MiliSeconds}`);
 				await delay(Sleep);
 			}
 			TargetCursor = await Targetfeed.getCursor();
