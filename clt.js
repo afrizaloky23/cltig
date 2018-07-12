@@ -47,9 +47,9 @@ const User = [
 	{
 		type:'input',
 		name:'sleep',
-		message:'Insert Sleep Recom 60000 (In MiliSeconds)',
+		message:'Insert Sleep Recomended 60000 (In MiliSeconds)',
 		validate: function(value){
-			value = value.match(/[0-9]/);
+			value = value.match(/[0-9]/);        
 			if (value) return true;
 			return 'Delay is number';
 		}
@@ -178,9 +178,9 @@ const Excute = async function(User, TargetUsername, Text, Sleep){
 					if (!getFollowers.includes(akun.id) && akun.params.isPrivate === false) {
 						var ranText = Text[Math.floor(Math.random() * Text.length)];
 						const ngeDo = await CommentAndLike(doLogin.session, akun.id, ranText)
-						console.log(chalk`[{magenta ${timeNow}}] {bold.green [>]}${akun.params.username} => ${ngeDo}`)
+						console.log(chalk`[{yellow ${timeNow}}] {bold.green [✓]}${akun.params.username} => ${ngeDo}`)
 					} else {
-						console.log(chalk`[{magenta ${timeNow}}] {bold.yellow [SKIPPED]}${akun.params.username} => PRIVATE OR ALREADY FOLLOWED`)
+						console.log(chalk`[{red ${timeNow}}] {bold.red [✕]}${akun.params.username} => PRIVATE`)
 					}
 				}));
 				console.log(chalk`{yellow Delay For ${Sleep} MiliSeconds}`);
