@@ -129,11 +129,10 @@ const CommentAndLike = async function(session, accountId, text){
 			ngeComment(session, result[0].params.id, text),
 			ngeLike(session, result[0].params.id)
 		]
-		const [Follow,Comment,Like] = await Promise.all(task);
-		const printFollow = Follow ? chalk`{green Follow}` : chalk`{red Follow}`;
+		const [Comment,Like] = await Promise.all(task);
 		const printComment = Comment ? chalk`{green Comment}` : chalk`{red Comment}`;
 		const printLike = Like ? chalk`{green Like}` : chalk`{red Like}`;
-		return chalk`{bold.green ${printFollow},${printComment},${printLike} [${text}]}`;
+		return chalk`{bold ${printFollow},${printComment},${printLike} [${text}]}`;
 	}
 	return chalk`{bold.cyan Timeline Kosong (SKIPPED)}`
 };
@@ -161,11 +160,11 @@ const Excute = async function(User, TargetUsername, Text, Sleep){
 	try {
 		console.log(chalk`{yellow \n | Try to Login .....}`)
 		const doLogin = await Login(User);
-		console.log(chalk`{green  | Login Succsess, try to get Followers Target ....}`)
+		console.log(chalk`{green  | Login Success, try to get Followers Target ....}`)
 		const getTarget = await Target(TargetUsername);
 		console.log(chalk`{green  | ${TargetUsername}[${getTarget.id}] Followers: ${getTarget.followers}}`)
 		const getFollowers = await Followers(doLogin.session, doLogin.account.id)
-		console.log(chalk`{cyan  | Try to Follow, Comment, and Like Followers Target ... \n}`)
+		console.log(chalk`{cyan  | Try to Comment, and Like Followers Target ... \n}`)
 		const Targetfeed = new Client.Feed.AccountFollowers(doLogin.session, getTarget.id);
 		var TargetCursor;
 		do {
@@ -197,7 +196,8 @@ const Excute = async function(User, TargetUsername, Text, Sleep){
 }
 
 console.log(chalk`
-{bold Instagram FFT Auto Comment, Auto Like, Auto Follow With}
+{bold Instagram CLT Auto Comment, Auto Like Target}
+{bold.cyan Recoded by Koe Nurf - SGB Team}
 {green BC0DE.NET - NAONLAH.NET - WingKocoli}
 {bold.red Code By Ccocot | ccocot@bc0de.net}
 `);
